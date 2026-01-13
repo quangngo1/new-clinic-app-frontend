@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import './App.css';
 
 // REPLACE 'localhost' with your computer's actual IP address (e.g., 192.168.1.5)
-const SERVER_IP = 'localhost';
+const SERVER_IP = '192.168.6.150';
 const API_URL = `http://${SERVER_IP}:5000`;
 const socket = io(API_URL);
 

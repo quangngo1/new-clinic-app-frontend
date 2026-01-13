@@ -1,3 +1,16 @@
+body {
+  /* This makes the whole widget draggable */
+  -webkit-app-region: drag;
+  user-select: none;
+  overflow: hidden; /* Prevents scrollbars on the tiny widget */
+}
+
+button {
+  /* IMPORTANT: You must make buttons NOT draggable, or you can't click them */
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
 }

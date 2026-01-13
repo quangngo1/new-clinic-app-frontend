@@ -1,31 +1,39 @@
 {
-  "name": "frontend",
-  "main": "main.js",
-  "version": "0.1.0",
+  "homepage": ".",
+  "name": "clinic-widget",
+  "version": "1.0.0",
+  "description": "A small room status widget for the clinic network.",
+  "author": "Clinic Admin",
   "private": true,
+  "main": "main.js",
   "dependencies": {
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.1",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "axios": "^1.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "socket.io-client": "^4.8.3",
-    "web-vitals": "^2.1.4"
+    "socket.io-client": "^4.7.0",
+    "web-vitals": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron": "electron ."
+    "electron": "electron .",
+    "dist": "electron-builder"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "build": {
+    "appId": "com.clinic.widget",
+    "productName": "ClinicStatus",
+    "extends": null,
+    "files": [
+      "build/**/*",
+      "main.js"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "portable"
+    }
   },
   "browserslist": {
     "production": [
