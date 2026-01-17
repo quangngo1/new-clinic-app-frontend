@@ -3,7 +3,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import './App.css';
 
-// REPLACE 'localhost' with your computer's actual IP address (e.g., 192.168.1.5)
+// REPLACE 'localhost' with your computer's actual IP address
 const SERVER_IP = '192.168.6.150';
 const API_URL = `http://${SERVER_IP}:5000`;
 const socket = io(API_URL);
@@ -12,10 +12,10 @@ function App() {
   const [buttons, setButtons] = useState([]);
 
   useEffect(() => {
-    // Initial fetch
+    // Initial fetch from backend
     axios.get(`${API_URL}/buttons`).then(res => setButtons(res.data));
 
-    // Listen for real-time updates from server
+    // Listen for real-time updates from other computers
     socket.on('update', (updatedButtons) => {
       setButtons(updatedButtons);
     });
@@ -35,7 +35,8 @@ function App() {
                 className={`status-btn ${btn.status.toLowerCase()}`}
                 onClick={() => toggleStatus(btn.id)}
             >
-              {btn.status === "Vacant" ? "V" : "T"}
+              {/* THE TWIST: Show the room ID/Number instead of status letters */}
+              {Number(btn.id) + 1}
             </button>
         ))}
       </div>
@@ -43,7 +44,6 @@ function App() {
 }
 
 export default App;
-
 
 
 
