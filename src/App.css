@@ -57,15 +57,23 @@ body {
   overflow: hidden;
   background: transparent;
 }
+
 .mini-container {
-  display: grid;
-  grid-template-columns: 1fr; /* Single column */
-  grid-template-rows: repeat(6, 1fr); /* 6 rows */
-  gap: 4px;
-  padding: 4px;
+  /* CHANGE: Using flex instead of grid so it shrinks to fit content */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
   width: fit-content;
-  background-color: rgba(0, 0, 0, 0.1); /* Optional: slight background to see the border */
+
+  /* Height auto ensures it only covers 2 rooms for Lab and 6 for Clinic */
+  height: auto;
+
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+
+  /* Draggable area */
   -webkit-app-region: drag;
   cursor: grab;
 }

@@ -2,11 +2,17 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
 function createWindow() {
+    // --- DYNAMIC SIZE LOGIC ---
+    // This checks if your package.json productName is "LabStatus" or similar
+    const isLab = app.name.toLowerCase().includes('lab');
+
     const win = new BrowserWindow({
         // --- SIZE & POSITION ---
         width: 65,            // Slim width for one column of buttons
-        height: 320,          // Height for 6 buttons + small gaps
-        resizable: true,     // Prevents users from stretching it
+        // Lab gets 130px height (2 buttons), Clinic gets 320px (6 buttons)
+        height: isLab ? 130 : 320,
+
+        resizable: false,
         alwaysOnTop: true,    // Keeps it floating over other apps
 
         // --- STYLE ---
@@ -24,6 +30,7 @@ function createWindow() {
 
     const isPackaged = app.isPackaged;
     if (isPackaged) {
+        // Correct path for built production files
         win.loadFile(path.join(app.getAppPath(), 'build', 'index.html'));
     } else {
         win.loadURL('http://localhost:3000');
